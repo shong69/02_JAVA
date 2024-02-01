@@ -1,0 +1,25 @@
+package edu.kh.basic;
+
+//한 줄 주석 : 컴파일러(번역기)가 해석하지 않는 부분
+/*범위 주석
+ * 
+ * 
+ * */
+
+//class : 자바 코드가 작성되는 영역
+public class JavaTest {
+	public static void main(String[] args) {
+		//main method(메서드): 자바 애플리케이션(프로그램)을 실행하기 위해 반드시 필요함
+		System.out.println("Hello World");
+		System.out.println("쏨땀");
+		System.out.println("물갈비");
+		
+		//ctrl+alt 방향키 : 작성한 방향으로 해당 줄 복사하기
+		
+		System.out.println("------------------------");//syso 치고 ctrl+space 누르면 자동완성 됨
+		
+		//숫자 연산
+		System.out.println("1+2");
+	}
+
+}

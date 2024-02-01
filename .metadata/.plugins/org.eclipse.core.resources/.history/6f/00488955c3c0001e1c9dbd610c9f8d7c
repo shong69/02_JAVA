@@ -1,0 +1,68 @@
+package edu.kh.variable.ex1;
+
+public class VariableExemple2 {
+	public static void main(String[] args) {
+		/*자바 기본 자료형 8가지
+		 * 1.논리형 : boolean(1byte)
+		 * 2.정수형 : byte(1), short(2byte), int(4), long(8)
+		 * 3.실수형 : float(4byte), double(8byte)
+		 * 4.문자형 : char(2byte,유니코드)
+		 * */
+		
+		//변수 선언 : 메모리에 값을 저장할 공간을 할당해줌
+		//변수 값 대입 : 변수에 값을 집어넣는 것
+		
+		
+		//*카멜 표기법
+		//연결된느 두 단어 중 후속단어의 첫 문자를 대문자로 표기하는 방법
+		
+		
+		boolean booleanData;
+		//메모리에 논리값(t/f)을 저장할 공간을 1btye 할당하고 할당된 공간을 booleanData라고 부르겠다.
+		
+		booleanData = true; //booleanData 변수에 true값을 집어넣기
+		
+		System.out.println("booleanData : "+booleanData);
+		
+		byte byteNumber =127; //128 넣는 순간 에러남
+		//메모리에 정수 값을 저장할 공간을 1byte 할당하고 할당된 공간을 byteNumber라고 부르겠다.
+		//선언된 byteNumber 변수에 처음으로 127을 넣었다.
+		//-->초기화:처음 변수에 값을 대입하는 것
+		
+		System.out.println("byteNumber : "+ byteNumber);
+		
+		short shortNumber=32767; //32768 넣는 순간 에러
+		//정수 자료형 기본형(short나 byte는 옛날 코드의 잔재임)
+		int intNumber = 2147483647; //2147483648 넣는 순간 에러남
+	 //자료형//변수명  //리터럴
+		//프로그래밍에서는 대입되는 이 데이터(값 자체)를 리터럴이라는 단어로도 표현한다
+		
+		//*리터럴 : 변수에 대입되거나 작성하는 값 자체
+		//+자료형에 따라 리터럴 표기법이 달라짐
+		
+		long longNumber = 10000000000L;//L 또는 ㅣ 을 적어 long 표기한 것을 나타냄
+		//The literal 10000000000 of type int is out of range 
+		//->100억이라는 값은 int의 범위를 벗어난 거임(int는 21억 몇까지 쓸 수 있음)
+		//뒤에 L을 붙여줘서 long 자료형임을 나타냄
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	}
+}
