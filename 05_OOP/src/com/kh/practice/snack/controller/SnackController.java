@@ -10,21 +10,17 @@ public class SnackController {
 	
 	public String saveData(String kind, String name, String flavor, int numOf, int price) {
 		
-		
+		s.setKind(kind);
+		s.setName(name);
+		s.setFlavor(flavor);
+		s.setNumOf(numOf);
+		s.setPrice(price);
+		return "저장 완료되었습니다.";
 	}
 	
 	public String confirmData() {
 		//저장된 데이터를 반환하는 메소드
 
-		System.out.println("저장한 정보를 확인하시겠습니까?(y/n) : ");
-		String inputYn = sc.next();
-		
-		if(inputYn.equals("n")) {
-			return null;
-		}else if(inputYn.equals("y")) {
-			return (s.getKind()+"("+s.getName()+" - "+s.getFlavor()+") "+s.getNumOf()+"개 "+s.getPrice()+"원");
-		}else {
-			return "잘못된 입력입니다.";
-		}
+		return ( s.getKind()+"("+s.getName()+" - "+s.getFlavor()+") "+s.getNumOf()+"개 "+s.getPrice()+"원");
 	}
 }

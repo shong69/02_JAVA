@@ -14,8 +14,8 @@ public class SnackMenu {
 		System.out.println("스낵류를 입력하세요.");
 		
 		System.out.print("종류 : ");
-		String inputKind = sc.next();
-
+		String inputkind = sc.next();
+		
 		
 		System.out.print("이름");
 		String inputName = sc.next();
@@ -29,6 +29,18 @@ public class SnackMenu {
 		System.out.print("가격 : ");
 		int inputPrice = sc.nextInt();
 		
-		System.out.println("저장 완료되었습니다.");
+		scr.saveData(inputkind, inputName, inputFlavor, inputNumOf, inputPrice);
+		
+		System.out.println("저장한 정보를 확인하시겠습니까?(y/n) : ");
+
+		String inputYn = sc.next();
+		
+		if(inputYn.equals("n")) {
+			
+		}else if(inputYn.equals("y")) {
+			scr.confirmData();
+		}else {
+			System.out.println("잘못된 입력입니다."); 
+		}
 	}
 }
