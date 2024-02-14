@@ -60,14 +60,6 @@ public class ProductController {
 		
 		proArr[count] = new Product(inputNum, inputName, inputPrice, inputTax);
 		//count 확인하고 9 이하면 count만큼의 인덱스에 객체 생성
-		
-		
-		
-		for(int i = 0;i<count;i++) {
-			
-			System.out.println("제품 정보가 추가됐습니다.("+ count+"/10)");
-			//이부분 코드 수정하기
-		}
 	}
 	
 
@@ -78,14 +70,9 @@ public class ProductController {
 			System.out.println("저장된 제품 정보가 없습니다.");
 			
 		}
-		for(int i = 0;i<proArr.length;i++) {
-			if(proArr[i] == null) {
-				break;
-				
-			}else {
-				System.out.println(proArr[i].information());
-				
-			}
+		for(int i = 0;i<count;i++) {
+			System.out.println(proArr[i].information());
+	
 		}
 
 		
