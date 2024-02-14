@@ -186,7 +186,7 @@ public class EmployeeService {
 			int hiSal = 0; //급여 액수
 
 			
-			for(int i = 0; i<=employees.length;i++) {
+			for(int i = 0; i<employees.length;i++) {
 				if(employees[i].getSalary()>hiSal) {
 					
 					hiSal = employees[i].getSalary();
@@ -201,7 +201,7 @@ public class EmployeeService {
 					}
 				}
 			}
-			System.out.printf("이름 : %s, 부서 : %s, 급여 : %d", 
+			System.out.printf("이름 : %s, 부서 : %s, 급여 : %d\n", 
 					employees[hiSalNum].getEmpName(), employees[hiSalNum].getEmpDept(), hiSal);
 		}
 		
