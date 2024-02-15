@@ -3,7 +3,7 @@ package com.hw4.controller;
 import com.hw4.model.vo.Member;
 
 public class MemberController {
-	public static int SIZE;
+	public static final int SIZE=10;
 	private int memberCount;
 	private Member mem[] = new Member[SIZE];
 	
@@ -19,7 +19,7 @@ public class MemberController {
 	
 	
 	public int getMemberCount() {
-		return memberCount;
+		return this.memberCount;
 	}
 	public Member[] getMem() {
 		//mem 주소값 리턴
@@ -56,17 +56,17 @@ public class MemberController {
 		//1인 경우 아이디로 검색 후 결과를 searchMember에 대입
 		//2인 경우 이름으로 검색 후 결과를 searchMember에 대입
 		//3인 경우 이메일로 검색 후 위와 같음
-		for(int i =0;i<=memberCount; i++) {
-			if(i == 1) {
+		for(int i =0;i<memberCount; i++) {
+			if(menu == 1) {
 				if(mem[i].getUserId().equals(search)) {
 					searchMember = mem[i];
 				}
-			}else if(i == 2) {
-				if(mem[i].getUserId().equals(search)) {
+			}else if(menu == 2) {
+				if(mem[i].getName().equals(search)) {
 					searchMember = mem[i];
 				}
 			}else {
-				if(mem[i].getUserId().equals(search)) {
+				if(mem[i].getEmail().equals(search)) {
 					searchMember = mem[i];
 				}
 			}
@@ -77,29 +77,110 @@ public class MemberController {
 	
 	public void updateMember(Member m, int menu, String update) {
 		if(menu == 1) {
-			mem[]
+			m.setUserPwd(update);
+		}else if(menu==2) {
+			m.setUserId(update);
+		}else if(menu == 3) {
+			m.setEmail(update);
+		}else {
+			System.out.println("잘못된 선택지입니다.");
 		}
 	}
 	
 	public void deleteMember(String userId) {
+		//매개변수로 전달받은 userId가 mem에 존재하는 경우 해당 회원 삭제 후 다음 인덱스 객체들의 정보를 한 칸씩 앞으로 이동시킴 
+		//-> 삭제시킨 위치 기억하고 다음칸 인덱스 한칸씩 줄여서 넣기
+		//실행 시 NullPointerExecption 발생할 수 있음->왜 그런지 생각해보기
 		
+		for(int i = 0;i<memberCount;i++) {
+			if(mem[i].getUserId().equals(userId)) {
+				for(int j = i;j<memberCount;j++) {
+					mem[j]=mem[j+1]; 
+				}
+				//break; //break하는 이유??
+			}
+		}
+		memberCount--;
+		//memberCount 1 감소
 	}
 	
 	public Member[] sortIdAsc() {
+		//compareTo(String) -> 음수는 나중, 양수는 더 앞인 문자열
+		Member[] copy = mem.clone();
+		//삽입정렬 사용
+		for(int i = 0; i<memberCount; i++) {
+			for(int j = 0;j<i;j++) {
+				if(copy[i].getUserId().compareTo(copy[j].getUserId())<0) { // 뒤에 있는 수가 더 커야지 음수가 결과로 나옴
+					Member temp = copy[j];
+					copy[j]=copy[i];
+					copy[i] = temp;
+				}
+			}
+
+		}
+		return copy;
 		
 	}
 	public Member[] sortIdDesc() {
 		
+		//선택 정렬
+		Member[] copy = mem.clone();
+		for(int i = 0;i<memberCount-1; i++) {
+			for(int j = i+1;j<memberCount;j++) {
+				if(copy[i].getUserId().compareTo(copy[j].getUserId())<0) {
+					Member temp = copy[j];
+					copy[j]=copy[i];
+					copy[i]=temp;
+				}
+			}
+		}
+		return copy;
+		
 	}
 	public Member[] sortAgeAsc() {
-		return mem;
+		Member[] copy = mem.clone();
+		//삽입정렬
+		for(int i = 0; i<memberCount;i++) {
+			for(int j = 0;j<i;j++) {
+				if(copy[i].getAge()<copy[j].getAge()) {
+					Member temp = copy[j];
+					copy[j]=copy[i];
+					copy[i]=temp;
+				}
+			}
+		}
+		return copy;
+			
 		
 	}
 	public Member[] sortAgeDesc() {
+		Member[] copy = mem.clone();
+		//삽입정렬
+		for(int i = 0; i<memberCount;i++) {
+			for(int j = 0;j<i;j++) {
+				if(copy[i].getAge()>copy[j].getAge()) {
+					Member temp = copy[j];
+					copy[j]=copy[i];
+					copy[i]=temp;
+				}
+			}
+		}
+		return copy;
 		
 	}
 	public Member[] sortGenderDesc() {
-		
+		Member[] copy = mem.clone();
+		//삽입정렬
+		for(int i = 0; i<memberCount;i++) {
+			for(int j = 0;j<i;j++) {
+				if(copy[i].getGender()=='M'&&copy[j].getGender()=='F') {
+					Member temp = copy[j];
+					copy[j]=copy[i];
+					copy[i]=temp;
+				}
+			}
+		}
+		return copy;
 	}
 
 	

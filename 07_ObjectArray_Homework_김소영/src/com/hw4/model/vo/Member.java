@@ -23,7 +23,7 @@ public class Member {
 	}
 	
 	public String information() {
-		return ""; //회원정보 출력
+		return String.format("아이디 : %s 비밀번호 : %s 회원 이름 : %s 회원 나이 : %d 성별 : %c 이메일 : %s", userId, userPwd, name, age, gender, email); //회원정보 출력
 	}
 	
 	public String getUserId() {
