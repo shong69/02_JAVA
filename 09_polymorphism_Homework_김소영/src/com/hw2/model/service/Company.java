@@ -19,35 +19,37 @@ public class Company implements ManagementSystem{
 		//매개변수로 전달받은 Person 객체가 Employee 클래스의 인스턴스 
 		//&&배열에 공간이 있으면 추가
 		
-		if(person) {
-				
-			}
-		/*System.out.printf("직원이 추가되었습니다 - ID : %s , 이름 : %s , 직책 : ",
-				employees[i].getId(),employees[i].getName(),employees[i].getPosition());*/
+		if(person instanceof Employee && employeeCount < employees.length) {
+			employees[employeeCount++] = (Employee) person; //Employee 를 괄호로 감싸는 이유는?
+			System.out.println("직원이 추가되었습니다 - "+ person.getInfo());
+		}else {
+			System.out.println("인원이 모두 충원되어 더이상 추가할 수 없습니다.");
+		}
 
 	}
 
 	@Override
 	public void removePerson(String id) {
-		for(int i = 0;i<employees.length;i++) {
+		for(int i = 0;i<employeeCount;i++) {
 			//id일치하는 직원 찾으면 getInfo
 			//없으면 없다고 syso
 			if(employees[i].getId().equals(id)) {
-				System.out.printf("\n직원이 삭제되었습니다 - ID : %s , 이름 : %s , 직책 : %s",
-						employees[i].getId(),employees[i].getName(), employees[i].getPosition());
+				System.out.println("직원이 삭제되었습니다 - "+employees[i].getInfo());
 				for(int j = i;j<employeeCount;j++) {
 					employees[j]=employees[j+1];
 				}
-			}break;
+				employees[--employeeCount] = null;
+			}return;
 			
 		}
+		System.out.println("ID : " + id + "인 직원을 찾을 수 없습니다.");
 	}
 
 	@Override
 	public void displayAllPersons() {
 		for(int i = 0;i<employeeCount;i++) {
 			//전체 직원 명단 출력
-			employees[i].getInfo();
+			System.out.println(employees[i].getInfo());
 		}
 	}
 	

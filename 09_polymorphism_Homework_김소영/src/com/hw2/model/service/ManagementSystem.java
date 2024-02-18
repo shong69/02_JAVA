@@ -4,9 +4,9 @@ import com.hw2.model.dto.Person;
 
 public interface ManagementSystem {
 
-	public abstract void addPerson(Person person);
+	void addPerson(Person person); //어차피  interface 라서 public 이나 void 는 필요 없음
 	
-	public abstract void removePerson(String id);
+	void removePerson(String id);
 	
-	public abstract void displayAllPersons();
+	void displayAllPersons();
 }

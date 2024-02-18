@@ -17,28 +17,33 @@ public class Prison implements ManagementSystem{
 	}
 	@Override
 	public void addPerson(Person person) {
-		
+		if(person instanceof Prisoner && prisonerCount <prisoners.length) {
+			prisoners[prisonerCount++] = (Prisoner) person;
+			System.out.println("수감자가 추가되었습니다 - "+person.getInfo());
+		}else {
+			System.out.println("수용소가 만실 상태여서 더이상 추가할 수 없습니다.");
+		}
 	}
 	@Override
 	public void removePerson(String id) {
 
-		for(int i = 0;i<prisoners.length;i++) {
+		for(int i = 0;i<prisonerCount;i++) {
 			//id일치하는 직원 찾으면 getInfo
 			//없으면 없다고 syso
 			if(prisoners[i].getId().equals(id)) {
-				System.out.printf("\n직원이 삭제되었습니다 - ID : %s , 이름 : %s , 죄목 : %s",
-						prisoners[i].getId(),prisoners[i].getName(), prisoners[i].getCrime());
+				System.out.println("수감자가 삭제되었습니다 - "+prisoners[i].getInfo());
 				for(int j = i;j<prisonerCount;j++) {
 					prisoners[j]=prisoners[j+1];
 				}
-			}break;
-			
+				prisoners[--prisonerCount] = null;
+			}return;
 		}
+		System.out.println("ID : "+id + "인 수감자를 찾을 수 없습니다");
 	}
 	@Override
 	public void displayAllPersons() {
 		for(int i = 0;i<prisonerCount;i++) {
-			prisoners[i].getInfo();
+			System.out.println(prisoners[i].getInfo());
 		}		
 	}
 
