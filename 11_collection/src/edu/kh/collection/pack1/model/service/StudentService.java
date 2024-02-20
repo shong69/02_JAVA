@@ -1,12 +1,15 @@
-package edu.kh.collection.model.service;
+package edu.kh.collection.pack1.model.service;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.InputMismatchException;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
 
-import edu.kh.collection.model.vo.Student;
+import edu.kh.collection.pack1.model.vo.Student;
+
 
 
 
@@ -107,6 +110,8 @@ public class StudentService {
 			System.out.println("4. 학생 정보 제거");
 			System.out.println("5. 이름으로 검색(일치)");
 			System.out.println("6. 이름으로 검색(포함)");
+			System.out.println("7. 나이순으로 정렬"); //Comparable 사용
+			System.out.println("8. 이름순으로 정렬"); //comparator 사용
 			System.out.println("0. 프로그램 종료");
 			
 			System.out.print("메뉴 번호 선택 : ");
@@ -124,7 +129,8 @@ public class StudentService {
 				case 4: System.out.println(removeStudent()); break;
 				case 5: System.out.println(searchName1()); break;
 				case 6: System.out.println(searchName2()); break;
-				
+				case 7: sortByAge(); break;
+				case 8: sortByName(); break;
 				case 0: System.out.println("프로그램 종료"); break;
 				
 				default: System.out.println("메뉴에 작성된 번호만 입력하세요");
@@ -362,6 +368,7 @@ public class StudentService {
 	 * 
 	 */
 	public String searchName1() {
+		System.out.println("==========학생 검색(완전 일치)==========");
 		System.out.print("이름을 입력하세요(일치) : ");
 		String inputName = sc.next();
 		
@@ -385,6 +392,7 @@ public class StudentService {
 	 */
 	public String searchName2() {
 		//boolean String.contains(문자열) : String에 문자열이 포함돼있으면 True, 없으면 false
+		System.out.println("==========학생 검색(문자열 포함)==========");
 		System.out.print("이름을 입력하세요(일부 검색) : ");
 		String inputName = sc.next();
 		
@@ -396,5 +404,43 @@ public class StudentService {
 		return "검색 결과가 없습니다";
 	}
 	
+	/**
+	 * 7. 나이순으로 정렬
+	 */
+	public void sortByAge() {
+		Collections.sort(studentList);
+		
+		//정렬된 결과 출력
+		for(Student std : studentList) {
+			System.out.println(std);
+		}
+	}
 	
+	public void sortByName() {
+		
+		
+		//이름에 따라 정렬하는 Comparator 객체 생성하기
+		Comparator<Student> nameComparator= Comparator.comparing(Student::getName);
+		//Comparator<Student> ageComparator= Comparator.comparing(Student::getScore);//여러개 정렬 가능
+		//Comparator 인터페이스의 static 메서드인 compraing()을 사용하여 Comparator 객체를 생성
+		//->comparing() 주어진 키(key)를 기반으로 객체를 비교
+		//Student::getName  :메서드 레퍼런스(Method Reference)
+		//->Student클래스의 getName()을 가리키는 것
+		//->이 메서드를 비교의 키로 사용하여 각 Student 객체를 비교하고 정렬함
+		
+		//=> Comparator.comparing(Student::getName)은 
+		//이름(name)을 기준으로 학생(Student)객체를 비교하는 Comparator를 생성한 것
+		
+		
+		//이름에 따라 정렬
+		Collections.sort(studentList, nameComparator);
+		//정렬된 결과 출력
+		for(Student std : studentList){
+			System.out.println(std);
+		}
+		
+		
+		
+		
+	}
 }
