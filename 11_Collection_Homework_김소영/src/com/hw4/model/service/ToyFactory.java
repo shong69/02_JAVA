@@ -189,10 +189,11 @@ public class ToyFactory {
 	 */
 	public void searchToy1() {
 		System.out.println("<제조일 순으로 장난감을 정렬>");
-		//Collection.sort 사용
+		//set을 list로 변환하여 출력
+
 		Collections.sort(toyList);
 		for(Toy toy : toyList) {
-			toy.toString();
+
 		}
 	}
 	

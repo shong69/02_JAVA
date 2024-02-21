@@ -59,11 +59,17 @@ public class Toy implements Comparable<Toy>{
 	public void setElement(String element) {
 		this.element = element;
 	}
+	
+	
+	
+	
 	@Override
 	public String toString() {
 		return "이름 : " + name + "/ 가격 : " + price + "/ 색상 : " + color
 				+ "/ 사용가능연령 : "+properAge +"/ 제조년월일 : " + manufactDate + "/ 재료 : " + element;
 	}
+	
+	
 	@Override
 	public int compareTo(Toy o) {
 		// 제조일을 기준으로 오름차순 정렬
