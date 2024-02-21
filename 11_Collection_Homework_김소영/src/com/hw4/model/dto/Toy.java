@@ -1,5 +1,6 @@
 package com.hw4.model.dto;
 
+import java.util.Objects;
 
 public class Toy implements Comparable<Toy>{
 
@@ -67,6 +68,24 @@ public class Toy implements Comparable<Toy>{
 	public int compareTo(Toy o) {
 		// 제조일을 기준으로 오름차순 정렬
 		return this.manufactDate - o.manufactDate;
+	}
+	
+	@Override
+	public int hashCode() {
+		return Objects.hash(color, element, manufactDate, name, price, properAge);
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Toy other = (Toy) obj;
+		return Objects.equals(color, other.color) && Objects.equals(element, other.element)
+				&& manufactDate == other.manufactDate && Objects.equals(name, other.name) && price == other.price
+				&& properAge == other.properAge;
 	}
 
 	

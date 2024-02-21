@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -13,32 +14,47 @@ import java.util.Set;
 import com.hw4.model.dto.Toy;
 
 public class ToyFactory {
+	
+	/*
+	 * 반드시 지켜야 할 사항
+		1. 장난감은 똑같은 재료를 중복으로 저장할 수 없다. -> 재료를 저장할 때 중복 검사
+		2. 똑같은 장난감을 만들 수 없다. ->장난감 등록할 때 검사
+		3. 장난감을 저장할 컬렉션에 중복된 장난감이 있어서는 안된다. ->??앞이랑 같은 얘기 아닌가??
+		4. 재료는 { 고유번호 : 재료명 } 형식으로 작성되어 있어야 한다. -> Map으로 저장
+		5. 재료의 고유번호는 중복될 수 없다. -> 재료 저장 시 고유번호 중복 검사
+		6. 재료 등록 시 이미 등록된 고유번호의 재료가 있으면, 덮어쓰겠냐는 질문을 하고 y/n으로 답변을 입력받아 처리해야 한다.
+		7. 재료 삭제 시 고유번호가 아닌, 재료명을 입력받아 같은 재료명이 있으면 삭제한다.
+	*/
+	
+	
 	Scanner sc = new Scanner(System.in);	
 	
 	//기본 등록된 재료 Map 설정
 	Map<Integer, String> elInven = new HashMap<Integer, String>();
-	//현재 제작된 장난감 목록 설정 set
+	//현재 제작된 장난감 목록 설정 set ->장난감들의 순서는 상관없고 중복 없어야 함 =>  set
+	//set의 중복 제거 => hashCode, equals 작성
 	Set<Toy> toyList = new HashSet<Toy>();
 	//장남감의 재료 목록 StringBuilder 사용
+	
 	public ToyFactory(){
 		elInven.put(1, "면직물");
 		elInven.put(2, "플라스틱");
 		elInven.put(3, "유리");
 		elInven.put(4, "고무");
 		
-		toyList.add(new Toy("마미롱레그", 8, 36000, "분홍색", 19950805,"면직물 고무" ));
+		toyList.add(new Toy("마미롱레그", 8, 36000, "분홍색", 19950805,"면직물, 고무" ));
 
-		toyList.add(new Toy("허기워기", 5, 12000, "파란색", 19940312, "면직물 플라스틱"));
+		toyList.add(new Toy("허기워기", 5, 12000, "파란색", 19940312, "면직물, 플라스틱"));
 
-		toyList.add(new Toy("키시미시", 5, 15000, "분홍색", 19940505, "면직물 플라스틱"));
+		toyList.add(new Toy("키시미시", 5, 15000, "분홍색", 19940505, "면직물, 플라스틱"));
 		
-		toyList.add(new Toy("캣냅", 8, 27000, "보라색", 19960128,"면직물 플라스틱"));
+		toyList.add(new Toy("캣냅", 8, 27000, "보라색", 19960128,"면직물, 플라스틱"));
 
-		toyList.add(new Toy("파피", 12, 57000, "빨간색", 19931225, "면직물 플라스틱 고무"));
+		toyList.add(new Toy("파피", 12, 57000, "빨간색", 19931225, "면직물, 플라스틱, 고무"));
+		
 
 	}
 
-	
 	
 	
 	
@@ -71,7 +87,7 @@ public class ToyFactory {
 			
 			default: System.out.println("잘못된 선택입니다. 종료합니다.");
 			}
-		}while(menuNum==0);
+		}while(menuNum!=0);
 	}
 	
 	
@@ -111,7 +127,8 @@ public class ToyFactory {
 		System.out.print("제조일(YYYYMMDD 형식으로 입력) : ");
 		int manuDate = sc.nextInt();
 		
-		
+		//재료 저장 어떻게 할지
+		//-> StringBuilder로 만들고 중복 확인할때마다 배열로 바꿔서 확인 없으면 Builder에 추가
 		StringBuilder list = new StringBuilder();
 		String element;
 		while(true) {
@@ -121,8 +138,20 @@ public class ToyFactory {
 			if(element.equals("q")) {
 				break;
 			}else {
-				//이미 리스트에 들어간 재료인지 확인하고 넣기
-				list.append(element+" ");
+				String temp = list.toString();
+				String[] elList = temp.split(", ");
+				
+				boolean flag = false;
+				for(String el : elList) {
+					if(el.equals(element)) {
+						System.out.println("이미 입력한 재료입니다.");
+						flag = true;
+						
+					}
+				}
+				if(!flag) {
+					list.append(element+", ");
+				}
 			}
 		}
 		String strList = list.toString();
@@ -133,7 +162,8 @@ public class ToyFactory {
 			System.out.println("새로운 장난감이 추가되었습니다.");
 		}
 
-		
+		// 장난감 중복 검사 안됨
+		//따옴표 마지막에도 생김
 	}
 	
 	
@@ -144,12 +174,11 @@ public class ToyFactory {
 		System.out.print("삭제할 장난감의 이름을 입력하세요 : ");
 		String name = sc.next();
 		
-		/*for(int i = 0;i<toyList.size();i++) {
-			if(toyList.get(키값).getName().equals(name)){
-				toyList.remove(i);
+		for(Toy toy : toyList) {
+			if(toy.getName().equals(name)) {
+				toyList.remove(toy);
 			}
-			
-		}iterator 사용*/ 
+		}
 		System.out.println("장난감이 삭제되었습니다.");
 	}
 	
@@ -250,7 +279,7 @@ public class ToyFactory {
 			
 			for(int i=0; i<elInven.size();i++) {
 				if(elInven.get(i+1).equals(name)) {
-					elInven.remove(name);
+					elInven.remove(i+1);
 					System.out.printf("재료 '%s'가 성공적으로 제거되었습니다.", name);
 				}
 			}
