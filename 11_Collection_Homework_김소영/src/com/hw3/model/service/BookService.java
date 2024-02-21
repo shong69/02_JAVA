@@ -12,6 +12,7 @@ public class BookService {
 	//도서 리스트 만들기
 	List<Book> booklist = new LinkedList<Book>(); 
 	List<Book> favoritelist = new LinkedList<Book>();
+	
 	//필드 값 초기화
 	public BookService() {
 		booklist.add(new Book(1111, "세이노의 가르침", "세이노", 6480, "데이원"));
