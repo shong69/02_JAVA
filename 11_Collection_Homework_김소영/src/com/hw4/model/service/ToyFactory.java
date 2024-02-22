@@ -154,6 +154,12 @@ public class ToyFactory {
 				}
 			}
 		}
+		
+		//재료 리스트에서 마지막 쉼표와 공백 제거하기
+		if(list.length()>0) {
+			list.setLength(list.length()-2);
+		}
+		//재료 리스트 문자열로 바꾸기
 		String strList = list.toString();
 		if(toyList.contains(new Toy(name, age, price, color, manuDate, strList))) {
 			System.out.println("이미 등록되어있는 장난감입니다.");
@@ -174,22 +180,33 @@ public class ToyFactory {
 		System.out.print("삭제할 장난감의 이름을 입력하세요 : ");
 		String name = sc.next();
 		
+		boolean flag = false;
 		for(Toy toy : toyList) {
 			if(toy.getName().equals(name)) {
 				toyList.remove(toy);
 			}
 		}
-		System.out.println("장난감이 삭제되었습니다.");
+		if(flag) {
+			System.out.println("장난감이 삭제되었습니다.");
+
+		}else {
+			System.out.println("해당하는 이름의 장난감을 찾을 수 없습니다.");
+
+		}
 	}
 	
 	
 	
 	/**
-	 * 4. 장난감 제조일 순으로 조회하기-> set으로 다시 
+	 * 4. 장난감 제조일 순으로 조회하기
 	 */
 	public void searchToy1() {
 		System.out.println("<제조일 순으로 장난감을 정렬>");
-		//set을 list로 변환하여 출력
+		//set을 list로 변환하여 sort 하기
+		List<Toy> toyListSortedByDate = new ArrayList<Toy>(toyList);
+		
+		
+		
 
 		Collections.sort(toyList);
 		for(Toy toy : toyList) {
@@ -277,16 +294,16 @@ public class ToyFactory {
 
 			System.out.print("삭제할 재료명 입력 : ");
 			String name = sc.next();
-			
+			boolean flag = false;
 			for(int i=0; i<elInven.size();i++) {
 				if(elInven.get(i+1).equals(name)) {
 					elInven.remove(i+1);
 					System.out.printf("재료 '%s'가 성공적으로 제거되었습니다.", name);
 				}
 			}
-			System.out.println("해당 이름의 재료가 존재하지 않습니다.");
-
-	
+			if(!flag) {
+				System.out.println("해당 이름의 재료가 존재하지 않습니다.");
+			}
 		}
 	}
 }

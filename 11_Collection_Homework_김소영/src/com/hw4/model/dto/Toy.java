@@ -2,14 +2,14 @@ package com.hw4.model.dto;
 
 import java.util.Objects;
 
-public class Toy implements Comparable<Toy>{
+public class Toy {
 
-	private String name;
-	private int properAge;
-	private int price;
-	private String color;
-	private int manufactDate;
-	private  String element;
+	private String name; //이름
+	private int properAge; //사용 가능 연령
+	private int price; //가격
+	private String color; //색상
+	private int manufactDate; //제조일(문자열로 표현)
+	private  String element; //재료
 	
 	public Toy() {
 		
@@ -70,11 +70,6 @@ public class Toy implements Comparable<Toy>{
 	}
 	
 	
-	@Override
-	public int compareTo(Toy o) {
-		// 제조일을 기준으로 오름차순 정렬
-		return this.manufactDate - o.manufactDate;
-	}
 	
 	@Override
 	public int hashCode() {
