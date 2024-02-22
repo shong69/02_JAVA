@@ -2,6 +2,7 @@ package com.hw4.model.service;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -199,12 +200,26 @@ public class ToyFactory {
 	
 	/**
 	 * 4. 장난감 제조일 순으로 조회하기
+	 * 
+	 * 		//Set을 List로 변환하여 sort하기
+		System.out.println("<제조일 순으로 장난감을 정렬>");
+		
+		List<Toy> toyListSortedByDate = new ArrayList<Toy>(toySet);
+		//comparator는 메소드에서 재정의 필요 없음
+		toyListSortedByDate.sort(Comparator.comparing(Toy::getManufactDate));
+		
+		int index = 1;
+		for(Toy toy : toyListSortedByDate) {
+			System.out.println(index + ". "+ toy);
+			index++;
+		}
 	 */
 	public void searchToy1() {
 		System.out.println("<제조일 순으로 장난감을 정렬>");
 		//set을 list로 변환하여 sort 하기
 		List<Toy> toyListSortedByDate = new ArrayList<Toy>(toyList);
-		
+		//comparator는 메소드에서 재정의 필요 없음
+		toyListSortedByDate.sort(Comparator.comparing(Toy::getManufactDate));
 		
 		
 

@@ -185,7 +185,9 @@ public void displayMenu() throws Exception {
 		}
 	}
 	
-	
+	//<Student> void java.util.Collections.sort(List<Student> list, Comparator<? super Student> c)
+	//void java.util.List.sort(Comparator<? super Toy> c)
+	//->두가지 다른 sort를 사용할 수 있음
 	public void displayToysByManufactureDate() {
 		//Set을 List로 변환하여 sort하기
 		System.out.println("<제조일 순으로 장난감을 정렬>");
@@ -193,7 +195,7 @@ public void displayMenu() throws Exception {
 		List<Toy> toyListSortedByDate = new ArrayList<Toy>(toySet);
 		//comparator는 메소드에서 재정의 필요 없음
 		toyListSortedByDate.sort(Comparator.comparing(Toy::getManufactDate));
-		
+		//List의 sort 기능을 사용 
 		int index = 1;
 		for(Toy toy : toyListSortedByDate) {
 			System.out.println(index + ". "+ toy);
