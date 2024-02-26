@@ -136,7 +136,7 @@ public class ExceptionService {
 	public void methodC() throws IOException{
 		//예외 강제 발생시키기
 		
-		throw new IOException(); //checke Exception ->무조건 예외처리 해야 하는 오류
+		throw new IOException(); //check Exception ->무조건 예외처리 해야 하는 오류
 		
 		/*try{
 		 * throw new IOExcpection();

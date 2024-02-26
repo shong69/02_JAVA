@@ -47,7 +47,7 @@ public class AbstractService {
 		//추상 클래스와 다형성 + 바인딩
 		
 		//추상클래스는 객체로 만들 수 없다!
-		//->하지만 "참조변수"로는 쓸 수 있다@@@@
+		//->@@@하지만 "참조변수"로는 쓸 수 있다@@@@
 		
 		//Animal a1 = new Animal(); 에러남
 		
@@ -71,13 +71,14 @@ public class AbstractService {
 			arr[i].breath();
 			System.out.println(arr[i].toString());
 			
+			//eat 메서드 자체는 정적 바인딩이다.
 			//edu.kh.poly.ex2.model.vo.Animal.eat() - 정적 바인딩
 			
 			System.out.println("----------------------------");
 			
 			//프로그램 실행 시 참조하고 있는 자식 객체의 오버라이딩 된 eat(), breath(), toString() 메소드를 수행함
 			//->동적 바인딩 : 부모 타입 참조변수로 메소드를 호출했지만
-			//					자식 타입의 오버라이딩된 메서드가 수행된다.
+			//				  자식 타입의 오버라이딩된 메서드가 수행된다.
 			
 		}
 		

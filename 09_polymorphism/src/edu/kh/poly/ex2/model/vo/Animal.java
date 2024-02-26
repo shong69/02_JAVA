@@ -3,7 +3,7 @@ package edu.kh.poly.ex2.model.vo;
 public abstract class Animal {
 	//추상 클래스(abstract Class)
 	//1.미완성 메서드(추상 메서드)를 보유하고 있는 클래스
-	//2. 객체로 만들면 안되는 클래스
+	//2.객체로 만들면 안되는 클래스
 	//->여러 타입들을 관리하기 위한 상위 타입의 목적으로 존재
 	//객체로 생성하여 사용하기 위한 목적이 아님
 	

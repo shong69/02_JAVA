@@ -75,21 +75,142 @@ public class TodoListDAOImpl implements TodoListDAO{
 		
 	}
 
-	
-	
-	
-	
+	//------------------------------------------
+	/*saveFile*/
+	@Override
+	public void saveFile() throws Exception {
+		// todoList를 파일로 저장하는 메서드
+		try {
+			//FILE_PATH 경로에 있는 파일과 연결된 객체 출력 스트림 생성
+			oos = new ObjectOutputStream(new FileOutputStream(FILE_PATH));
+			oos.writeObject(todoList);
+			
+		} finally {
+			oos.close();
+		}
+
+		
+	}
+
 	
 	//------------------------------------------
 	
-	
-	
+
 	
 	@Override
 	public List<Todo> todoListFullView() {
-		
-		
 		return todoList;
 	}
 
+
+
+	@Override
+	public Todo todoDetailView(int index) {
+		//1. index 범위가 todoList의 범위를 넘어가면 null 반환
+		if(index <0 || index >= todoList.size()) return null;
+		
+		//2. index가 정상 범위인 경우 index번째 요소 반환
+		return todoList.get(index);
+	}
+
+
+
+
+	@Override
+	public int todoAdd(Todo todo) throws Exception{
+		//전달받은 todo를 dao 필드의 todoList에 추가하기
+		// -> 성공 시 파일에 저장(출력) 후 삽입된 index를 반환
+		// -> 실패 시 -1 반환
+		
+		if(todoList.add(todo)) {
+			//파일 저장
+			
+			saveFile();
+			
+			//삽입된 index 반환
+			
+			return todoList.size()-1;
+		}
+		
+		return -1; //추가 실패
+	}
+
+	@Override
+	public boolean todoComplete(int index) throws Exception{
+		
+		//1. index 범위 초과 시 false를 반환
+		if(index <0 || index >= todoList.size()) return false;
+		
+		//2. index가 정상 범위인 경우
+		//index번째 요소의 complete값을 변경하고 
+		//파일 저장 후 true 반환
+		boolean complete = todoList.get(index).isComplete(); //false or true
+		todoList.get(index).setComplete(!complete); //원래 complete 상태의 반대값으로 바꿔줌
+		
+		saveFile(); //파일 저장
+		return true;
+		
+		
+	}
+
+	@Override
+	public boolean toUpdate(int index, String title, String content) throws Exception{
+		//수정된 제목, 내용을 이용해서 Todo 객체 생성
+		Todo todo = new Todo(
+							title, 
+							content, 
+							todoList.get(index).isComplete(),
+							todoList.get(index).getRegDate()
+						);
+		//index번째 요소의 complete, regDate 값을 얻어와 todo에 세팅
+		
+		//List.set(int index, E e) : 
+		//index 번째 요소를 매개변수 중 e로 바꾸고, 이전 요소를 반환해준다
+		//(없으면 null)
+		
+		if(todoList.set(index, todo)!=null) { //수정 성공
+			//변경된 todo저장하기
+			saveFile();
+			return true;
+			
+		}
+		return false;
+	}
+
+	@Override
+	public Todo todoDelete(int index) throws Exception {
+
+		//index 범위 검사
+		if(index < 0 || index >= todoList.size()) return null;
+		
+		//todoList에서 index 번째 요소 삭제 후 파일 저장
+		Todo todo = todoList.remove(index);
+		
+		saveFile();
+		
+		return todo;
+	}
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
