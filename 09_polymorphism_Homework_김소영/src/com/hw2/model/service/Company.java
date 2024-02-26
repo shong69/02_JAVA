@@ -20,7 +20,7 @@ public class Company implements ManagementSystem{
 		//&&배열에 공간이 있으면 추가
 		
 		if(person instanceof Employee && employeeCount < employees.length) {
-			employees[employeeCount++] = (Employee) person; //Employee 를 괄호로 감싸는 이유는?
+			employees[employeeCount++] = (Employee) person; //Employee 를 괄호로 감싸는 이유는?->업캐스팅
 			System.out.println("직원이 추가되었습니다 - "+ person.getInfo());
 		}else {
 			System.out.println("인원이 모두 충원되어 더이상 추가할 수 없습니다.");
@@ -36,7 +36,7 @@ public class Company implements ManagementSystem{
 			if(employees[i].getId().equals(id)) {
 				System.out.println("직원이 삭제되었습니다 - "+employees[i].getInfo());
 				for(int j = i;j<employeeCount;j++) {
-					employees[j]=employees[j+1];
+					employees[j]=employees[j+1]; //선택 정렬
 				}
 				employees[--employeeCount] = null;
 			}return;
