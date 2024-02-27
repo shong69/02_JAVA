@@ -1,19 +1,14 @@
 package com.toyproject.model.service;
 
-<<<<<<< HEAD
-=======
 import java.util.List;
 import java.util.Map;
 
 import com.toyproject.model.dto.StreamingSite;
 
->>>>>>> b9e037464a0f89f9d4dcf8d2415e883d5a9a27e8
 //Service
 //데이터 가공, 로직 처리 등의 기능을 제공하는 역할
 public interface StreamingSiteService {
 
-<<<<<<< HEAD
-=======
 	/** 구독중인 스트리머 목록 반환
 	 * @return streamingList
 	 */
@@ -51,6 +46,4 @@ public interface StreamingSiteService {
 	 * @throws Exception 
 	 */
 	public abstract boolean checkAlert(String streamer) throws Exception;
-
->>>>>>> b9e037464a0f89f9d4dcf8d2415e883d5a9a27e8
 }

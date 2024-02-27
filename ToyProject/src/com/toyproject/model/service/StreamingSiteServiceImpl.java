@@ -1,8 +1,5 @@
 package com.toyproject.model.service;
 
-<<<<<<< HEAD
-public class StreamingSiteServiceImpl {
-=======
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
@@ -92,6 +89,5 @@ public class StreamingSiteServiceImpl implements StreamingSiteService{
 		
 		return dao.checkAlert(streamer);
 	}
->>>>>>> b9e037464a0f89f9d4dcf8d2415e883d5a9a27e8
 
 }

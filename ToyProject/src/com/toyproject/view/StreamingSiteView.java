@@ -1,10 +1,7 @@
 package com.toyproject.view;
 
 import java.io.BufferedReader;
-<<<<<<< HEAD
-import java.util.Scanner;
 
-=======
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.HashMap;
@@ -16,35 +13,28 @@ import com.toyproject.model.dto.StreamingSite;
 import com.toyproject.model.service.StreamingSiteService;
 import com.toyproject.model.service.StreamingSiteServiceImpl;
 
->>>>>>> b9e037464a0f89f9d4dcf8d2415e883d5a9a27e8
 //View : 보여지는 부분(내용 출력, 키보드 입력,..)에서의 역할을 한다
 public class StreamingSiteView {
 
 	//필드
 	private Scanner sc = new Scanner(System.in);
 	private BufferedReader br = null;
-<<<<<<< HEAD
-=======
+
 	private StreamingSiteService service = null;
->>>>>>> b9e037464a0f89f9d4dcf8d2415e883d5a9a27e8
 	//service 객체 변수 추가하기
 	
 	//기본생성자에서 예외 처리하기
 	public StreamingSiteView() {
 		try {
 			
-<<<<<<< HEAD
-=======
+
 			service = new StreamingSiteServiceImpl();
 			br = new BufferedReader(new InputStreamReader(System.in));
 			
->>>>>>> b9e037464a0f89f9d4dcf8d2415e883d5a9a27e8
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
 	}
-<<<<<<< HEAD
-=======
 	
 	
 	
@@ -257,18 +247,4 @@ public class StreamingSiteView {
 	}
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
->>>>>>> b9e037464a0f89f9d4dcf8d2415e883d5a9a27e8
 }

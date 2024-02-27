@@ -1,9 +1,6 @@
 package com.toyproject.model.dao;
 
-<<<<<<< HEAD
-public class StreamingSiteDAOImpl {
 
-=======
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -154,18 +151,4 @@ public class StreamingSiteDAOImpl implements StreamingSiteDAO{
 		return flag;
 	}
 
-
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
->>>>>>> b9e037464a0f89f9d4dcf8d2415e883d5a9a27e8
 }
