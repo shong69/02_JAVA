@@ -220,12 +220,12 @@ public class ToyFactory {
 		List<Toy> toyListSortedByDate = new ArrayList<Toy>(toyList);
 		//comparator는 메소드에서 재정의 필요 없음
 		toyListSortedByDate.sort(Comparator.comparing(Toy::getManufactDate));
+		//List의 sort 기능을 사용 
 		
-		
-
-		Collections.sort(toyList);
-		for(Toy toy : toyList) {
-
+		int index = 1;
+		for(Toy toy : toyListSortedByDate) {
+			System.out.println(index + ". "+ toy);
+			index++;
 		}
 	}
 	
@@ -234,19 +234,29 @@ public class ToyFactory {
 	 */
 	public void searchToy2() {
 		System.out.println("<연령별로 사용 가능한 장난감>");
+
+		Map<Integer, List<Toy>> toysByAge = new HashMap<Integer,List<Toy>>();
+		//toysByAge Map 생성
 		
-		Set<Toy> toyList2 = toyList;
-		//리스트 복제하고 for문으로 한바퀴 돌리면서 age 칸 찾고 remove(리턴값 프린트하기)
-		for(int i=0; i<toyList2.size();i++) {
+		for(Toy toy : toyList) {
+			int age = toy.getProperAge(); //5
+			toysByAge.putIfAbsent(age, new ArrayList<>());
+			//putIfAbsent() : Map인터페이스에서 제공되는 메서드로, 
+			//해당 키가 존재하지 않는 경우에만 전달받은 값을 추가함 
+			//=>맵에 해당 연령의 리스트가 없는 경우에만 새로운 리스트를 생성하여 추가
 			
-			int age = toyList2.get(i).getProperAge();
-			System.out.printf("[연령 : %d세]\n", age);
+			toysByAge.get(age).add(toy); //value에 해당 연령의 toy들 추가
+		}
+		
+		for(Entry<Integer, List<Toy>> entry : toysByAge.entrySet()) {
+			int age = entry.getKey();
+			List<Toy> toyList = entry.getValue();
 			
-			for(int j=0; j<toyList2.size();j++) {
-				if(toyList2.get(j).getProperAge()==age) {
-					
-					System.out.println(toyList.remove(j).toString());
-				}
+			System.out.println("[연령 : "+age+"세]");
+			int index = 1;
+			for(Toy toy : toyList) {
+				System.out.println(index + "."+toy);
+				index++;
 			}
 		}
 	}

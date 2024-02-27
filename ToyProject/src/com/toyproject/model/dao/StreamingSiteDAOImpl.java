@@ -151,4 +151,16 @@ public class StreamingSiteDAOImpl implements StreamingSiteDAO{
 		return flag;
 	}
 
+
+	@Override
+	public StreamingSite unfollowStreamer(String streamer) {
+		for(int i=0;i<streamList.size();i++) {
+			if(streamList.get(i).getStreamer().equals(streamer)) {
+				return streamList.get(i);
+			}
+		}
+		return null;
+
+	}
+
 }

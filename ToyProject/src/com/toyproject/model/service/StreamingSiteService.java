@@ -46,4 +46,20 @@ public interface StreamingSiteService {
 	 * @throws Exception 
 	 */
 	public abstract boolean checkAlert(String streamer) throws Exception;
+
+
+	/**구독료 포멧 함수
+	 * @param followFee
+	 * @return
+	 */
+	public abstract String formatFee(int followFee);
+
+
+	/** 구독 취소
+	 * @param streamer
+	 * @return
+	 */
+	public abstract int unfollowStreamer(String streamer);
+
+
 }
